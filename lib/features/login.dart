@@ -8,7 +8,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Define the black color
+      backgroundColor: Colors.white, 
       body: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Container(
@@ -39,16 +39,18 @@ class Login extends StatelessWidget {
               const SizedBox(height: 10),
               reusableTextField('Enter Password', Icons.lock_outline_rounded, true),
 
+              const SizedBox(height: 20),
               Container(width: MediaQuery.of(context).size.width, 
-              height: 50, margin: EdgeInsets.all(10),
+              height: 50, margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
-              ),
-            
-                ElevatedButton(
+              
+              child: ElevatedButton(
                   onPressed: () {
                   },
                   child: Text("Login", style: subheader),
               ),
+              ),
+            
             ],
           ),
         ),
