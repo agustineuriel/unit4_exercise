@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:unit4_exercise/features/home.dart';
 import 'package:unit4_exercise/utils/reusable.dart';
 import 'package:unit4_exercise/utils/styles.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _emailTextController = TextEditingController();
+  TextEditingController _passwordTextController = TextEditingController();
+  String _errorText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -26,36 +37,60 @@ class Login extends StatelessWidget {
               ),
 
               const SizedBox(height: 20),
+              Container(
+                                  width: double.infinity,
+                                  child: Text(
+                                    _errorText,
+                                    style: errorText,
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ),
               Align(alignment: Alignment.centerLeft,
               child: Text('Username', style: subheader),
               ),
               const SizedBox(height: 10),
-              reusableTextField('Enter Username', Icons.person, false),
+              reusableTextField('Enter Username', Icons.person, false, _emailTextController),
               const SizedBox(height: 20),
 
               Align(alignment: Alignment.centerLeft,
               child: Text('Password', style: subheader),
               ),
               const SizedBox(height: 10),
-              reusableTextField('Enter Password', Icons.lock_outline_rounded, true),
+              reusableTextField('Enter Password', Icons.lock_outline_rounded, true, _passwordTextController),
 
               const SizedBox(height: 20),
-              Container(width: MediaQuery.of(context).size.width, 
-              height: 50, margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
-              
-              child: ElevatedButton(
-                  onPressed: () {
-                  },
-                  child: Text("Login", style: subheader),
-              ),
-              ),
-            
+              login(context, 'Log in', _login),
             ],
           ),
         ),
         ),
       ),
     );
+  }
+
+void _login(BuildContext context) {
+    if (_emailTextController.text.isEmpty ||
+        _passwordTextController.text.isEmpty) {
+      setState(() {
+        _errorText = 'Please enter both username and password.';
+      });
+    } else {
+      String enteredUsername = _emailTextController.text.trim();
+      String enteredPassword = _passwordTextController.text.trim();
+
+      const username = 'admin';
+      const password = 'admin';
+
+      if (enteredUsername == username && enteredPassword == password) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      } else {
+        setState(() {
+          _errorText = 'Invalid username or password.';
+        });
+      }
+    }
   }
 }
