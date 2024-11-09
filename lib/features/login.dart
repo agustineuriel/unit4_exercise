@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unit4_exercise/features/home.dart';
 import 'package:unit4_exercise/utils/reusable.dart';
 import 'package:unit4_exercise/utils/styles.dart';
+import 'package:unit4_exercise/features/signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -59,8 +60,31 @@ class _LoginPageState extends State<LoginPage> {
               reusableTextField('Enter Password', Icons.lock_outline_rounded, true, _passwordTextController),
 
               const SizedBox(height: 20),
+ amoroso-parcellano
               login(context, 'Log in', _login),
+
+              Container(width: MediaQuery.of(context).size.width, 
+              height: 50, margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
+              
+              child: ElevatedButton(
+                  onPressed: () {
+                  },
+                  child: Text("Login", style: subheader),
+              ),
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Signup()),
+                    );
+                  },
+                  child: Text("Don't have an account? Sign up"),
+              ),
+main
             ],
+          
           ),
         ),
         ),
