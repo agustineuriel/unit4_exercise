@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:unit4_exercise/utils/reusable.dart';
 import 'package:unit4_exercise/utils/styles.dart';
-import 'package:unit4_exercise/features/signup.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class Signup extends StatelessWidget {
+  const Signup({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,20 +47,11 @@ class Login extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () {
                   },
-                  child: Text("Login", style: subheader),
+                  child: Text("Sign Up", style: subheader),
               ),
               ),
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Signup()),
-                    );
-                  },
-                  child: Text("Don't have an account? Sign up"),
-              ),
+            
             ],
-          
           ),
         ),
         ),
