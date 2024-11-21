@@ -27,6 +27,9 @@ class _LoginPageState extends State<LoginPage> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+            
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center, // Remove the extra comma
             children: [
@@ -60,19 +63,10 @@ class _LoginPageState extends State<LoginPage> {
               reusableTextField('Enter Password', Icons.lock_outline_rounded, true, _passwordTextController),
 
               const SizedBox(height: 20),
- amoroso-parcellano
-              login(context, 'Log in', _login),
 
-              Container(width: MediaQuery.of(context).size.width, 
-              height: 50, margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
-              
-              child: ElevatedButton(
-                  onPressed: () {
-                  },
-                  child: Text("Login", style: subheader),
-              ),
-              ),
+              login(context, 'Log in', _login),
+               
+
               TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -82,14 +76,14 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: Text("Don't have an account? Sign up"),
               ),
-main
+
             ],
           
           ),
         ),
         ),
       ),
-    );
+    ));
   }
 
 void _login(BuildContext context) {
