@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'package:unit4_exercise/utils/colors.dart';
 import 'package:unit4_exercise/features/todo_item.dart';
 import 'package:unit4_exercise/utils/styles.dart';
@@ -17,7 +18,7 @@ class _HomeState extends State<Home>{
   final todosList = ToDo.todoList();
   List<ToDo> _foundToDo = [];
   final _todoController = TextEditingController();
-
+  DateTime _selectedDate = DateTime.now();
 
   @override
   void initState() {
@@ -30,10 +31,14 @@ class _HomeState extends State<Home>{
     return Scaffold(
       backgroundColor: tdBGColor,
       appBar: _buildAppBar(),
-      body: Stack(
+      body: Column(
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal : 20, vertical: 15,),
+          _buildCalendar(),
+          Expanded(
+            child: Stack(
+                children: [
+                  Container(
+                     padding: EdgeInsets.symmetric(horizontal : 20, vertical: 15,),
             child: Column(
               children: [
                 searchBox(),
@@ -63,6 +68,8 @@ class _HomeState extends State<Home>{
               ],
             ),
             ),
+                
+         
 
             Align(
               alignment: Alignment.bottomCenter, 
@@ -125,8 +132,37 @@ class _HomeState extends State<Home>{
               ),
         ],
       ),
+    ),
+    ],
+    ),
     );
 }
+
+  Widget _buildCalendar() {
+    return TableCalendar(
+      firstDay: DateTime.utc(2000, 1, 1),
+      lastDay: DateTime.utc(2100, 12, 31),
+      focusedDay: _selectedDate,
+      selectedDayPredicate: (day) => isSameDay(day, _selectedDate),
+      onDaySelected: (selectedDay, focusedDay) {
+        setState( () {
+          _selectedDate = selectedDay;
+        });
+      },
+      calendarStyle: CalendarStyle(
+        todayDecoration: BoxDecoration(
+          color: tdBlue,
+          shape: BoxShape.circle,
+        ),
+        selectedDecoration: BoxDecoration(
+          color: tdBlue.withOpacity(0.8),
+          shape: BoxShape.circle,
+        ),
+        ),
+        headerStyle: HeaderStyle(formatButtonVisible: false),
+    );
+  }
+
 
 //functions
   void _handleToDoChange(ToDo todo){
@@ -142,26 +178,38 @@ class _HomeState extends State<Home>{
   }
 
   void _addToDoItem(String toDo){
+    if (toDo.isEmpty){
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please enter a task')),
+      );
+      return;
+    }
+
     setState(() {
       todosList.add(ToDo(
         id: DateTime.now().microsecondsSinceEpoch.toString(), 
         todoText: toDo,
+        taskDate: _selectedDate, // Task association with selected date
         ));
     });
     _todoController.clear();
   }
 
-  void _runFilter(String enteredKeyword){
-    List<ToDo> results = [];
-    if (enteredKeyword.isEmpty){
-      results = todosList;
-    } else {
-      results = todosList.where((item) => item.todoText!.toLowerCase().contains(enteredKeyword.toLowerCase())).toList();
-    }
+  void _runFilter(String enteredKeyword) {
+    List<ToDo> results = todosList.where((todo) {
+      return todo.todoText!.toLowerCase().contains(enteredKeyword.toLowerCase()) &&
+          isSameDay(todo.taskDate, _selectedDate);
+    }).toList();
 
     setState(() {
       _foundToDo = results;
     });
+  }
+
+  List<ToDo> _getTasksForSelectedDate() {
+    return todosList.where((todo) {
+      return isSameDay(todo.taskDate, _selectedDate);
+    }).toList();
   }
 
   Widget searchBox() {

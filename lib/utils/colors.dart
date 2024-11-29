@@ -6,4 +6,4 @@ const Color tdBlue = Color(0xFF5F52EE);
 const Color tdBlack = Color(0Xff3A3A3A);
 const Color tdGray = Color(0xFF717171);
 
-const Color tdBGColor = Color(0xFFEEEEFF5);
+const Color tdBGColor = Color(0xffeeeeff5);

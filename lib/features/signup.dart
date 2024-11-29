@@ -11,7 +11,7 @@ class Signup extends StatelessWidget {
       backgroundColor: Colors.white, 
       body: Padding(
         padding: const EdgeInsets.all(40.0),
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
@@ -41,7 +41,7 @@ class Signup extends StatelessWidget {
 
               const SizedBox(height: 20),
               Container(width: MediaQuery.of(context).size.width, 
-              height: 50, margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
+              height: 50, margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
               
               child: ElevatedButton(
