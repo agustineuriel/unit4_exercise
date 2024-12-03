@@ -81,10 +81,10 @@ class _LoginState extends State<Login> {
             child: Column(
             crossAxisAlignment: CrossAxisAlignment.center, // Remove the extra comma
             children: [
-              Image.asset('logo.png', height: 200),
+              Image.asset('Transpotrack.png', height: 300),
               const SizedBox(height: 20),
               Text(
-                "TranspoTrack",
+                "To-do List",
                 style: header,
                 
               ),

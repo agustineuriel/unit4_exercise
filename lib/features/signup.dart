@@ -71,10 +71,10 @@ void _validateAndSignup() {
             child: Column(
             crossAxisAlignment: CrossAxisAlignment.center, // Remove the extra comma
             children: [
-              Image.asset('logo.png', height: 200),
+              Image.asset('TranspoTrack.png', height: 200),
               const SizedBox(height: 20),
               Text(
-                "Signup",
+                "Sign-up Page",
                 style: header,
               ),
               const SizedBox(height: 20),

@@ -49,8 +49,8 @@ class _HomeState extends State<Home>{
                       margin: EdgeInsets.only(
                       top: 50, 
                       bottom: 20),
-                      child: Text('All ToDosasdasd',
-                       style: TextStyle(
+                      child: Text('All To-Dos',
+                       style: TextStyle(  
                         fontSize: 30, 
                         fontWeight: FontWeight.w500
                         ),
@@ -100,7 +100,7 @@ class _HomeState extends State<Home>{
                   child: TextField(
                     controller: _todoController,
                     decoration: InputDecoration(
-                      hintText: 'Add a new todo item',
+                      hintText: 'Add a new todo list',
                       border: InputBorder.none
                     ),
                   ),
@@ -255,11 +255,11 @@ class _HomeState extends State<Home>{
             size: 30,
           ),
           Container(
-            height: 40,
-            width: 40,
+            height: 45,
+            width: 45,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset('assets/images/avatar.jpeg'),
+              borderRadius: BorderRadius.circular(0),
+              child: Image.asset('assets/profile-image.png'),
             ),
           ),
         ],
