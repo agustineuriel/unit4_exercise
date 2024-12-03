@@ -3,13 +3,19 @@ import 'package:unit4_exercise/utils/reusable.dart';
 import 'package:unit4_exercise/utils/styles.dart';
 import 'package:unit4_exercise/features/home.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart'; 
+
+//This is the signup screen
+
 final storage = FlutterSecureStorage();
 
+
+//to save username and password
 void _saveCredentials(String username, String password) async {
   await storage.write(key: 'username', value: username);
   await storage.write(key: 'password', value: password);
 }
 
+//Stateful widget used for signup screen
 class Signup extends StatefulWidget {
   const Signup({super.key});
 
@@ -17,6 +23,7 @@ class Signup extends StatefulWidget {
   State<Signup> createState() => _SignupState();
 }
 
+//reusable textfield for input fields
 Widget reusableTextField(
   String hintText,
   IconData icon,
@@ -43,7 +50,7 @@ class _SignupState extends State<Signup> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
 
-
+//for validation and process
 void _validateAndSignup() {
   if (_formKey.currentState!.validate()) {
     _saveCredentials(_usernameController.text, _passwordController.text);
@@ -59,6 +66,8 @@ void _validateAndSignup() {
 }
 }
 
+
+  //Signup Function
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +78,7 @@ void _validateAndSignup() {
           child: Form(
             key: _formKey,
             child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center, // Remove the extra comma
+            crossAxisAlignment: CrossAxisAlignment.center, 
             children: [
               Image.asset('TranspoTrack.png', height: 200),
               const SizedBox(height: 20),
@@ -82,6 +91,8 @@ void _validateAndSignup() {
               alignment: Alignment.centerLeft,
               child: Text('Username', style: subheader),
               ),
+
+              //username input
               const SizedBox(height: 10),
               reusableTextField(
               'Enter Username', 
@@ -96,6 +107,8 @@ void _validateAndSignup() {
               },
               ),
               const SizedBox(height: 20),
+
+              //email input
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text ('Email', style: subheader),
@@ -117,6 +130,8 @@ void _validateAndSignup() {
               ),
               const SizedBox(height: 20),
               Align(
+
+                //password input
                 alignment: Alignment.centerLeft,
                 child: Text('Password', style: subheader),
               ),
@@ -156,6 +171,8 @@ void _validateAndSignup() {
                   }
                 ),
               const SizedBox(height: 30),
+
+              //sign up button
               Container(
               width: MediaQuery.of(context).size.width, 
               height: 50,
@@ -167,6 +184,8 @@ void _validateAndSignup() {
                   child: Text("Signup", style: subheader),
               ),
               ),
+
+              //redirect to login screen
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);

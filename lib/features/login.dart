@@ -5,6 +5,8 @@ import 'package:unit4_exercise/features/signup.dart';
 import 'package:unit4_exercise/features/home.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+//Here is the login screen
+
 final storage = FlutterSecureStorage();
 
 
@@ -16,7 +18,7 @@ _LoginState createState() => _LoginState();
 }
 
 
-
+//Reusable TextField with validation
 Widget reusableTextField(
   String hintText,
   IconData icon,
@@ -36,12 +38,15 @@ Widget reusableTextField(
   );
 }
 
+//State managament for login
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+
+    //validate and handle login
     Future<void> _validateAndLogin() async {
   if (_formKey.currentState!.validate()) {
     String? savedUsername = await storage.read(key: 'username');
@@ -65,6 +70,7 @@ class _LoginState extends State<Login> {
   }
 }
     
+//This is the login function
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +85,7 @@ class _LoginState extends State<Login> {
            child: Form(
             key: _formKey,
             child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center, // Remove the extra comma
+            crossAxisAlignment: CrossAxisAlignment.center, 
             children: [
               Image.asset('Transpotrack.png', height: 300),
               const SizedBox(height: 20),
@@ -92,7 +98,7 @@ class _LoginState extends State<Login> {
               const SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text('Username', style: subheader),
+                child: Text('Username', style: subheader), //username field
               ),
               const SizedBox(height: 10),
               reusableTextField(
@@ -102,7 +108,7 @@ class _LoginState extends State<Login> {
               controller: _usernameController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your username';
+                  return 'Please enter your username';//username validation
                 }
                 return null;
               }
@@ -110,7 +116,7 @@ class _LoginState extends State<Login> {
               const SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text('Password', style: subheader),
+                child: Text('Password', style: subheader),//password field
               ),
               const SizedBox(height: 10),
               reusableTextField('Enter Password', 
@@ -119,7 +125,7 @@ class _LoginState extends State<Login> {
               controller: _passwordController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
+                  return 'Please enter your password';//password validation
                 }
                 return null;
               }
@@ -138,6 +144,8 @@ class _LoginState extends State<Login> {
                   child: Text("Login", style: subheader),
               ),
               ),
+
+              //button to navigate to signup screen
               TextButton(
                   onPressed: () {
                     Navigator.push(

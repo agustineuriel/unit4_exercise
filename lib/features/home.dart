@@ -5,6 +5,7 @@ import 'package:unit4_exercise/features/todo_item.dart';
 import 'package:unit4_exercise/utils/styles.dart';
 import 'package:unit4_exercise/features/todo.dart';
 
+// This is the Home Screen
 
 class Home extends StatefulWidget {
   Home ({Key? key}) : super(key: key);
@@ -56,6 +57,7 @@ class _HomeState extends State<Home>{
                         ),
                     ),
                     ),
+                    // Iterates To Do list and display
                     for ( ToDo todoo in _foundToDo.reversed )
                     ToDoItem(
                       todo: todoo,
@@ -70,7 +72,7 @@ class _HomeState extends State<Home>{
             ),
                 
          
-
+            // Here is the input for adding to do
             Align(
               alignment: Alignment.bottomCenter, 
               child: Row(children: [ 
@@ -138,6 +140,7 @@ class _HomeState extends State<Home>{
     );
 }
 
+  // Here is the calendar to choose dates
   Widget _buildCalendar() {
     return TableCalendar(
       firstDay: DateTime.utc(2000, 1, 1),
@@ -164,19 +167,21 @@ class _HomeState extends State<Home>{
   }
 
 
-//functions
+//Toggles To Do
   void _handleToDoChange(ToDo todo){
     setState((){
       todo.isDone = !todo.isDone;
     });
   }
 
+//Deletes a To Do
   void _deleteToDoItem(String id){
     setState((){
       todosList.removeWhere((item) => item.id == id);
     });
   }
 
+//Adds a To Do
   void _addToDoItem(String toDo){
     if (toDo.isEmpty){
       ScaffoldMessenger.of(context).showSnackBar(
@@ -189,12 +194,12 @@ class _HomeState extends State<Home>{
       todosList.add(ToDo(
         id: DateTime.now().microsecondsSinceEpoch.toString(), 
         todoText: toDo,
-        taskDate: _selectedDate, // Task association with selected date
+        taskDate: _selectedDate, // Task add with selected date
         ));
     });
     _todoController.clear();
   }
-
+  //Filters for search and selected date
   void _runFilter(String enteredKeyword) {
     List<ToDo> results = todosList.where((todo) {
       return todo.todoText!.toLowerCase().contains(enteredKeyword.toLowerCase()) &&
@@ -206,12 +211,14 @@ class _HomeState extends State<Home>{
     });
   }
 
+  //Gets tasks for selected date
   List<ToDo> _getTasksForSelectedDate() {
     return todosList.where((todo) {
       return isSameDay(todo.taskDate, _selectedDate);
     }).toList();
   }
 
+  //Search box with text input for filtering
   Widget searchBox() {
     return Container(
               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -241,7 +248,7 @@ class _HomeState extends State<Home>{
   }
 
 
-
+  //Here is the app bar with menu icons
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: tdBGColor,
