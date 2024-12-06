@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:unit4_exercise/utils/reusable.dart';
 import 'package:unit4_exercise/utils/styles.dart';
 import 'package:unit4_exercise/features/signup.dart';
 import 'package:unit4_exercise/features/home.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 //Here is the login screen
 
-final storage = FlutterSecureStorage();
+const storage = FlutterSecureStorage();
 
 
 class Login extends StatefulWidget {
@@ -60,7 +59,7 @@ class _LoginState extends State<Login> {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Home()),
+        MaterialPageRoute(builder: (context) => const Home()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -78,7 +77,7 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.white, 
       body: Padding(
         padding: const EdgeInsets.all(40.0),
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
@@ -87,7 +86,7 @@ class _LoginState extends State<Login> {
             child: Column(
             crossAxisAlignment: CrossAxisAlignment.center, 
             children: [
-              Image.asset('Transpotrack.png', height: 300),
+              Image.asset('assets/logo1.png', height: 300),
               const SizedBox(height: 20),
               Text(
                 "To-do List",
@@ -135,7 +134,7 @@ class _LoginState extends State<Login> {
               Container(
               width: MediaQuery.of(context).size.width, 
               height: 50, 
-              margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
+              margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
               decoration: 
               BoxDecoration(borderRadius: BorderRadius.circular(90)),
               
@@ -153,7 +152,7 @@ class _LoginState extends State<Login> {
                       MaterialPageRoute(builder: (context) => const Signup()),
                     );
                   },
-                  child: Text("Don't have an account? Sign up"),
+                  child: const Text("Don't have an account? Sign up"),
               ),
             ],
           

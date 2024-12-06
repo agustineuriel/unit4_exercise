@@ -20,7 +20,7 @@ static List<ToDo> todoList() {
     ToDo( id: '03', todoText: 'Task 3', taskDate: DateTime.now(), isDone: false),
     ToDo( id: '04', todoText: 'Task 4', taskDate: DateTime.now(), isDone: false),
     ToDo( id: '05', todoText: 'Task 5', taskDate: DateTime.now(), isDone: false),
-    ToDo( id: '06', todoText: 'Task 6', taskDate: DateTime.now().add(Duration(days:1))),
+    ToDo( id: '06', todoText: 'Task 6', taskDate: DateTime.now().add(const Duration(days:1))),
   ];
 }
 }

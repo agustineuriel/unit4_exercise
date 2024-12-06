@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unit4_exercise/utils/colors.dart';
 import 'package:unit4_exercise/features/todo_item.dart';
-import 'package:unit4_exercise/utils/styles.dart';
 import 'package:unit4_exercise/features/todo.dart';
 
 // This is the Home Screen
 
 class Home extends StatefulWidget {
-  Home ({Key? key}) : super(key: key);
+  const Home ({super.key});
  
 
  @override
@@ -39,7 +38,7 @@ class _HomeState extends State<Home>{
             child: Stack(
                 children: [
                   Container(
-                     padding: EdgeInsets.symmetric(horizontal : 20, vertical: 15,),
+                     padding: const EdgeInsets.symmetric(horizontal : 20, vertical: 15,),
             child: Column(
               children: [
                 searchBox(),
@@ -47,10 +46,10 @@ class _HomeState extends State<Home>{
                   child: ListView(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                       top: 50, 
                       bottom: 20),
-                      child: Text('All To-Dos',
+                      child: const Text('All To-Dos',
                        style: TextStyle(  
                         fontSize: 30, 
                         fontWeight: FontWeight.w500
@@ -78,12 +77,12 @@ class _HomeState extends State<Home>{
               child: Row(children: [ 
                 Expanded( 
                   child: Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   bottom: 20, 
                   right:20, 
                   left:20,
                   ),
-                  padding:EdgeInsets.symmetric(
+                  padding:const EdgeInsets.symmetric(
                     horizontal: 20, 
                     vertical: 5,
                   ),
@@ -101,7 +100,7 @@ class _HomeState extends State<Home>{
                   ),
                   child: TextField(
                     controller: _todoController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Add a new todo list',
                       border: InputBorder.none
                     ),
@@ -109,24 +108,24 @@ class _HomeState extends State<Home>{
                   ),
                 ),
                   Container(
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       bottom: 20,
                       right: 20,
                     ),
                     child:ElevatedButton(
-                      child: Text(
-                        '+',
-                        style: TextStyle(
-                          fontSize: 40,
-                        ),
-                      ),
                       onPressed: () {
                         _addToDoItem(_todoController.text);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: tdBlue,
-                        minimumSize: Size(60, 60),
+                        minimumSize: const Size(60, 60),
                         elevation: 10,
+                      ),
+                      child: const Text(
+                        '+',
+                        style: TextStyle(
+                          fontSize: 40,
+                        ),
                       ),
                     ),
                   ),
@@ -153,7 +152,7 @@ class _HomeState extends State<Home>{
         });
       },
       calendarStyle: CalendarStyle(
-        todayDecoration: BoxDecoration(
+        todayDecoration: const BoxDecoration(
           color: tdBlue,
           shape: BoxShape.circle,
         ),
@@ -162,7 +161,7 @@ class _HomeState extends State<Home>{
           shape: BoxShape.circle,
         ),
         ),
-        headerStyle: HeaderStyle(formatButtonVisible: false),
+        headerStyle: const HeaderStyle(formatButtonVisible: false),
     );
   }
 
@@ -185,7 +184,7 @@ class _HomeState extends State<Home>{
   void _addToDoItem(String toDo){
     if (toDo.isEmpty){
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please enter a task')),
+        const SnackBar(content: Text('Please enter a task')),
       );
       return;
     }
@@ -221,14 +220,14 @@ class _HomeState extends State<Home>{
   //Search box with text input for filtering
   Widget searchBox() {
     return Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20)
             ),
             child: TextField(
               onChanged: (value) => _runFilter(value),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 contentPadding: EdgeInsets.all(0),
                 prefixIcon: Icon(
                   Icons.search, 
@@ -256,12 +255,12 @@ class _HomeState extends State<Home>{
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(
+          const Icon(
             Icons.menu,
             color: tdBlack,
             size: 30,
           ),
-          Container(
+          SizedBox(
             height: 45,
             width: 45,
             child: ClipRRect(

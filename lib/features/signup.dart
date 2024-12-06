@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:unit4_exercise/utils/reusable.dart';
 import 'package:unit4_exercise/utils/styles.dart';
-import 'package:unit4_exercise/features/home.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart'; 
 
 //This is the signup screen
 
-final storage = FlutterSecureStorage();
+const storage = FlutterSecureStorage();
 
 
 //to save username and password
@@ -37,7 +35,7 @@ Widget reusableTextField(
     decoration: InputDecoration(
       hintText: hintText,
       prefixIcon: Icon(icon),
-      border: OutlineInputBorder(),
+      border: const OutlineInputBorder(),
     ),
     validator: validator,
   );
@@ -80,7 +78,7 @@ void _validateAndSignup() {
             child: Column(
             crossAxisAlignment: CrossAxisAlignment.center, 
             children: [
-              Image.asset('TranspoTrack.png', height: 200),
+              Image.asset('assets/logo1.png', height: 200),
               const SizedBox(height: 20),
               Text(
                 "Sign-up Page",
